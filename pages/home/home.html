@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      3Des Of Images
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button (click)="chooseFile()" block>Choose File</button>
+  <ion-item>
+    <ion-label floating>Enter Secrect key</ion-label>
+    <ion-input [(ngModel)]="keyHex" type="text"></ion-input>
+  </ion-item>
+  {{data}}
+  <button [hidden]="!data" [disabled]="keyHex.length>=8" ion-button (click)="desEncryption()" block>Encrypt File</button>
+  <button [hidden]="!encrypt" color="secondary" ion-button (click)="viewEncryptedText()" block>Encrypted File</button>
+  <button [hidden]="!encrypt" ion-button (click)="desDecryption()" block>Decrypt File</button>
+  <button [hidden]="!decrypt" color="secondary" ion-button (click)="viewDecryptedText()" block>Decrepted File</button>
+  <button [hidden]="!decrypt" ion-button (click)="writeFile()" block>Save File</button>
+  <button [hidden]="!imgFile" ion-button (click)="openFile()" block>Open File</button>
+  <img [hidden]="!imgFile" [(src)]="decrypt">
+  <div *ngIf="imgFile">
+    <p><b>Your file is saved at : </b>{{imgFile}}</p>
+  </div>
+  <button [hidden]="!imgFile" color="danger" ion-button (click)="deleteFile()" block>Delete File</button>
+</ion-content>
